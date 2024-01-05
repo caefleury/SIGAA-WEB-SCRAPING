@@ -1,17 +1,14 @@
-import json
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 
+import json
+from utils import return_depto_by_name
+
 # Dados do departamento
-with open('../data/depto_data.json', 'r') as json_file:
+with open('./data/depto_data.json', 'r') as json_file:
     depto_data = json.load(json_file)
 
-def return_depto_by_name(depto_data, depto_name):
-    for depto in depto_data:
-        if depto.get('name') == depto_name:
-            return depto
-    return None
 
 # Defina a URL que você quer acessar
 URL ='https://sigaa.unb.br/sigaa/public/turmas/listar.jsf'
