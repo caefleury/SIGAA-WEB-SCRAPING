@@ -1,15 +1,27 @@
+import json
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 
+# Dados do departamento
+with open('../data/depto_data.json', 'r') as json_file:
+    depto_data = json.load(json_file)
+
+def return_depto_by_name(depto_data, depto_name):
+    for depto in depto_data:
+        if depto.get('name') == depto_name:
+            return depto
+    return None
+
 # Defina a URL que você quer acessar
-url ='https://sigaa.unb.br/sigaa/public/turmas/listar.jsf'
+URL ='https://sigaa.unb.br/sigaa/public/turmas/listar.jsf'
 
 # Inicie o navegador
 driver = webdriver.Chrome() # ou webdriver.Firefox(), dependendo do seu navegador
 
 # Acesse a página
-driver.get(url)
+driver.get(URL)
+print(json)
 
 try:
     select_element_nivel = driver.find_element('id', 'formTurma:inputNivel')
@@ -31,12 +43,12 @@ select_nivel = Select(select_element_nivel)
 select_nivel.select_by_value('G')
 
 # Selecione o departamento 
-depto = '518'
+depto = depto_data[30]['value'] # 30 = Computação
 select_depto = Select(select_element_depto)
 select_depto.select_by_value(depto)
 
 # Seleciona o ano
-ANO = '2023'
+ANO = '2024'
 input_element_ano.clear() 
 input_element_ano.send_keys(ANO)
 
