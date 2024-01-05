@@ -35,13 +35,15 @@ depto = '518'
 select_depto = Select(select_element_depto)
 select_depto.select_by_value(depto)
 
-# ANO = '2023'
-# input_element_ano.click() 
-# input_element_ano.send_keys(ANO)
+# Seleciona o ano
+ANO = '2023'
+input_element_ano.clear() 
+input_element_ano.send_keys(ANO)
 
-# PERIODO = '1'
-# select_periodo = Select(select_element_periodo)
-# select_periodo.select_by_value(PERIODO)
+# Selecione o periodo
+PERIODO = '1'
+select_periodo = Select(select_element_periodo)
+select_periodo.select_by_value(PERIODO)
 
 # Submeta o formulário
 form_element = driver.find_element('name', 'formTurma')
