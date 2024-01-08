@@ -37,32 +37,43 @@ def button_click(driver,tag,atribute_value):
 def print_page_source(driver):
     print(driver.page_source)
 
-def retrieve_classes(driver):
-    classes = []
+def retrieve_courses(driver):
+    courses = []
     count = 1
-    turma = {}
+    course = {}
     while True:
         try:
             tr = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]")
         except NoSuchElementException:
+            courses.append(course)
             break
         if tr.get_attribute('class') == 'agrupador': 
-                    classes.append(turma)
-                    turma = {}
-                    name = tr.find_element(By.CLASS_NAME, "tituloDisciplina").text
-                    class_name = name.split(' - ', 1)[1]
-                    class_code = name.split()[0]
-                    turma['class_name'] = class_name
-                    turma['class_code'] = class_code
+            courses.append(course)
+            course = {}
+            name = tr.find_element(By.CLASS_NAME, "tituloDisciplina").text
+            class_name = name.split(' - ', 1)[1]
+            class_code = name.split()[0]
+            course['class_name'] = class_name
+            course['class_code'] = class_code
+            # print('-------------------------')
+            # print(f'iteração {count} - agrupador')
+            # print(f'turma: {course}')
+            # print(f'courses: {courses}')
+            # print('-------------------------')
         else:
-            turma['class_number'] = tr.find_element(By.CLASS_NAME, "turma").text
-            turma['anoPeriodo'] = tr.find_element(By.CLASS_NAME, "anoPeriodo").text
-            turma['professor'] = tr.find_element(By.CLASS_NAME, "nome").text
-            turma['horario'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[4]").text
-            turma['vagas_ofertadas'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[6]").text
-            turma['vagas_ocupadas'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[7]").text
-            turma['local'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[8]").text
-
+            
+            course['class_number'] = tr.find_element(By.CLASS_NAME, "turma").text
+            course['anoPeriodo'] = tr.find_element(By.CLASS_NAME, "anoPeriodo").text
+            course['professor'] = tr.find_element(By.CLASS_NAME, "nome").text
+            course['horario'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[4]").text
+            course['vagas_ofertadas'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[6]").text
+            course['vagas_ocupadas'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[7]").text
+            course['local'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[8]").text
+            # print('-------------------------')
+            # print(f'iteração {count} - linhaParImpar')
+            # print(f'turma: {course}')
+            # print(f'courses: {courses}')
+            # print('-------------------------')
         count += 1
         
-    return classes
+    return courses[1:]
