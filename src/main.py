@@ -8,10 +8,10 @@ if __name__ == '__main__':
         department_list = json.load(json_file)
 
     # Definir a URL que você quer acessar
-    URL ='https://sigaa.unb.br/sigaa/public/turmas/listar.jsf'
+    URL = 'https://sigaa.unb.br/sigaa/public/turmas/listar.jsf'
 
-    # Iniciar o navegador e acesse a página 
-    driver = webdriver.Chrome() # ou webdriver.Firefox(), dependendo do seu navegador
+    # Iniciar o navegador e acesse a página
+    driver = webdriver.Chrome()  # ou webdriver.Firefox(), dependendo do seu navegador
     driver.get(URL)
 
     # Defina os inputs da busca
@@ -29,14 +29,14 @@ if __name__ == '__main__':
     all_courses_data = []
     for i in range(len(decent_department_list)):
         department_classes = {}
-        department = decent_department_list[i]['value'] 
+        department = decent_department_list[i]['value']
 
         # Preencher os inputs da busca
-        fill_form(driver,EDUCATIONAL_LEVEL,department,YEAR,TERM)
+        fill_form(driver, EDUCATIONAL_LEVEL, department, YEAR, TERM)
 
         # Submeter o formulário
-        form_submit(driver,'id', 'formTurma')
-        button_click(driver,'name', 'formTurma:j_id_jsp_1370969402_11')
+        form_submit(driver, 'id', 'formTurma')
+        button_click(driver, 'name', 'formTurma:j_id_jsp_1370969402_11')
 
         # Retornar turmas
         courses = retrieve_courses(driver)
@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     # Salva os dados em um arquivo json
     json_file_path = './data/courses_data.json'
-    json_write(all_courses_data,json_file_path)
+    json_write(all_courses_data, json_file_path)
 
     # Impede que o navegador feche caso seja necessário inspecionar o código
     # while(True):
