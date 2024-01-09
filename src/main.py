@@ -1,38 +1,54 @@
 from selenium import webdriver
-from utils import *
+from utils.utils import *
 import json
 
 if __name__ == '__main__':
     # Abre arquivo com dados dos departamentos
-    with open('./data/dept_data.json', 'r') as json_file:
-        dept_data = json.load(json_file)
+    with open('./data/department_list.json', 'r') as json_file:
+        department_list = json.load(json_file)
 
-    # Defina a URL que você quer acessar
+    # Definir a URL que você quer acessar
     URL ='https://sigaa.unb.br/sigaa/public/turmas/listar.jsf'
 
-    # Inicie o navegador e acesse a página 
+    # Iniciar o navegador e acesse a página 
     driver = webdriver.Chrome() # ou webdriver.Firefox(), dependendo do seu navegador
     driver.get(URL)
 
-    # Defia os inputs da busca
+    # Defina os inputs da busca
     EDUCATIONAL_LEVEL = 'G'
-    DEPARTMENT = dept_data[17]['value'] # 30 = Computação  , 17 = Matemática
-    YEAR = '2023'
-    TERM = '4'
+    YEAR = '2024'
+    TERM = '1'
 
-    # Preencha os inputs da busca
-    fill_select(driver,'id', 'formTurma:inputNivel', EDUCATIONAL_LEVEL)
-    fill_select(driver,'id', 'formTurma:inputDepto', DEPARTMENT)
-    fill_input(driver,'id', 'formTurma:inputAno', YEAR)
-    fill_select(driver,'id', 'formTurma:inputPeriodo', TERM)
+    decent_department_list = [
+        {"name": "DEPARTAMENTO DE MATEMÁTICA", "value": "518"},
+        {"name": "DEPARTAMENTO DE CIÊNCIAS DA COMPUTAÇÃO", "value": "508"},
+        {"name": "DEPARTAMENTO DE ENGENHARIA ELÉTRICA", "value": "443"},
+    ]
 
-    # Submeta o formulário
-    form_submit(driver,'id', 'formTurma')
-    button_click(driver,'name', 'formTurma:j_id_jsp_1370969402_11')
+    # Insere os departamentos e suas turmas em uma lista
+    all_courses_data = []
+    for i in range(len(decent_department_list)):
+        department_classes = {}
+        department = decent_department_list[i]['value'] 
 
-    # Retorna as turmas da página
-    retrieve_courses(driver)
+        # Preencher os inputs da busca
+        fill_form(driver,EDUCATIONAL_LEVEL,department,YEAR,TERM)
+
+        # Submeter o formulário
+        form_submit(driver,'id', 'formTurma')
+        button_click(driver,'name', 'formTurma:j_id_jsp_1370969402_11')
+
+        # Retornar turmas
+        courses = retrieve_courses(driver)
+
+        department_classes['departmento'] = decent_department_list[i]['name']
+        department_classes['courses'] = courses
+        all_courses_data.append(department_classes)
+
+    # Salva os dados em um arquivo json
+    json_file_path = './data/courses_data.json'
+    json_write(all_courses_data,json_file_path)
 
     # Impede que o navegador feche caso seja necessário inspecionar o código
-    while(True):
-        pass
+    # while(True):
+    #     pass

@@ -63,12 +63,12 @@ def retrieve_courses(driver):
             courses.append(course)
             course = {}
             name = tr.find_element(By.CLASS_NAME, "tituloDisciplina").text
-            class_name = name.split(' - ', 1)[1]
-            class_code = name.split()[0]
-            course['class_name'] = class_name
-            course['class_code'] = class_code
+            course_name = name.split(' - ', 1)[1]
+            course_code = name.split()[0] 
+            course['course_name'] = course_name
+            course['course_code'] = course_code
         else:
-            course['class_number'] = tr.find_element(By.CLASS_NAME, "turma").text
+            course['course_number'] = tr.find_element(By.CLASS_NAME, "turma").text
             course['anoPeriodo'] = tr.find_element(By.CLASS_NAME, "anoPeriodo").text
             course['professor'] = tr.find_element(By.CLASS_NAME, "nome").text
             course['horario'] = driver.find_element(By.XPATH, f"//div[@id='turmasAbertas']/table/tbody/tr[{count}]/td[4]").text

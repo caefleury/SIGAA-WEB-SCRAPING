@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+courses_data.json
+courses_data.csv
