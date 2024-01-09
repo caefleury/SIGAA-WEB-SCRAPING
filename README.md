@@ -1,6 +1,9 @@
 # SIGAA-WEB-SCRAPING
 O SIGAA-WEB-SCRAPING é um projeto em Python que utiliza a biblioteca Selenium para realizar web scraping na página de turmas da Universidade de Brasília (UnB) na plataforma SIGAA. Este projeto tem como objetivo extrair informações relevantes das turmas oferecidas, possibilitando análises ou automação de processos relacionados.
 
+*Esse projeto também foi usado para estudar modularização e pacotes em python e, portanto, há uma divisão excessiva de funções em
+diferentes pastas e arquivos.*
+
 ## Requisitos
 Antes de começar, certifique-se de ter instalado os seguintes requisitos:
 
