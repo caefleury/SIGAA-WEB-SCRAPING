@@ -1,10 +1,34 @@
-from selenium import webdriver
-from utils.utils import *
+"""
+Main module for retrieving course data from the SIGAA platform.
+
+This script utilizes the Selenium library to automate the process of fetching course information
+from the SIGAA platform for specific departments during a particular academic term.
+The data is extracted and saved in a structured format (JSON).
+
+Dependencies:
+- json
+- selenium.webdriver
+- utils.utils (custom utility functions)
+
+Usage:
+- Ensure the 'department_list.json' file in the 'data' directory contains the necessary department details.
+- Configure the desired educational level, academic year, and term in the script.
+- Run the script to initiate the automated process of retrieving and saving course information.
+
+Note: Ensure you have the necessary web driver executable (e.g., chromedriver) available in the system PATH.
+
+Example:
+    python3 main.py
+
+"""
 import json
+from selenium import webdriver
+from utils.utils import fill_form, form_submit, button_click, retrieve_courses, json_write
+
 
 if __name__ == '__main__':
     # Abre arquivo com dados dos departamentos
-    with open('./data/department_list.json', 'r') as json_file:
+    with open('./data/department_list.json', 'r', encoding='utf-8') as json_file:
         department_list = json.load(json_file)
 
     # Definir a URL que você quer acessar
@@ -27,9 +51,8 @@ if __name__ == '__main__':
 
     # Insere os departamentos e suas turmas em uma lista
     all_courses_data = []
-    for i in range(len(decent_department_list)):
+    for i, department in enumerate(decent_department_list):
         department_classes = {}
-        department = decent_department_list[i]['value']
 
         # Preencher os inputs da busca
         fill_form(driver, EDUCATIONAL_LEVEL, department, YEAR, TERM)
@@ -41,13 +64,13 @@ if __name__ == '__main__':
         # Retornar turmas
         courses = retrieve_courses(driver)
 
-        department_classes['departmento'] = decent_department_list[i]['name']
+        department_classes['departmento'] = department['name']
         department_classes['courses'] = courses
         all_courses_data.append(department_classes)
 
     # Salva os dados em um arquivo json
-    json_file_path = './data/courses_data.json'
-    json_write(all_courses_data, json_file_path)
+    JSON_FILE_PATH = './data/courses_data.json'
+    json_write(all_courses_data, JSON_FILE_PATH)
 
     # Impede que o navegador feche caso seja necessário inspecionar o código
     # while(True):

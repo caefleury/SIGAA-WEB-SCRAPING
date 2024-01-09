@@ -1,9 +1,8 @@
+import json
+
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-from selenium import webdriver
-import json
-import csv
 
 # Encontra o select e o preenche com os valores
 
@@ -95,12 +94,12 @@ def retrieve_courses(driver):
 
 
 def json_write(data, file_name):
-    with open(f'{file_name}', 'w') as json_file:
+    with open(f'{file_name}', 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, indent=2, ensure_ascii=False)
 
 
 def csv_write(data, file_name):
-    with open(f'./data/{file_name}.csv', 'w') as csv_file:
+    with open(f'./data/{file_name}.csv', 'w', encoding='utf-8') as csv_file:
         csv_file.write(
             'class_name,class_code,class_number,anoPeriodo,professor,horario,vagas_ofertadas,vagas_ocupadas,local\n')
         for course in data:
