@@ -63,7 +63,7 @@ class TestRetrieve(unittest.TestCase):
                                            'course_code': 'MAT0045',
                                            'course_number': '01',
                                            'anoPeriodo': '2023.4',
-                                           'professor': 'RICARDO RUVIARO (30h)\nMARCELO FERNANDES FURTADO (30h)',
+                                           'professor': 'RICARDO RUVIARO (30h)\nMARCELO FERNANDES FURTADO (30h)', # pylint: disable=line-too-long
                                            'horario': '23456N123',
                                            'vagas_ofertadas': '50',
                                            'vagas_ocupadas': '50',
@@ -72,7 +72,7 @@ class TestRetrieve(unittest.TestCase):
                                            'course_code': 'MAT0137',
                                            'course_number': '03',
                                            'anoPeriodo': '2023.4',
-                                           'professor': 'ALANCOC DOS SANTOS ALENCAR (60h)\nALINE GOMES DA SILVA PINTO (30h)',
+                                           'professor': 'ALANCOC DOS SANTOS ALENCAR (60h)\nALINE GOMES DA SILVA PINTO (30h)', # pylint: disable=line-too-long
                                            'horario': '7M12345 246N123 35N1234',
                                            'vagas_ofertadas': '71',
                                            'vagas_ocupadas': '70',

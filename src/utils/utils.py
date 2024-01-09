@@ -242,8 +242,8 @@ def csv_write(data, file_name):
     """
     with open(f'./data/{file_name}.csv', 'w', encoding='utf-8') as csv_file:
         csv_file.write(
-            'class_name,class_code,class_number,anoPeriodo,professor,horario,vagas_ofertadas,vagas_ocupadas,local\n')
+            'class_name,class_code,class_number,anoPeriodo,professor,horario,vagas_ofertadas,vagas_ocupadas,local\n') # pylint: disable=line-too-long
         for course in data:
             csv_file.write(
-                f"{course['class_name']},{course['class_code']},{course['class_number']},{course['anoPeriodo']},{course['professor']},{course['horario']},{course['vagas_ofertadas']},{course['vagas_ocupadas']},{course['local']}\n")
+                f"{course['class_name']},{course['class_code']},{course['class_number']},{course['anoPeriodo']},{course['professor']},{course['horario']},{course['vagas_ofertadas']},{course['vagas_ocupadas']},{course['local']}\n") # pylint: disable=line-too-long
     return 0

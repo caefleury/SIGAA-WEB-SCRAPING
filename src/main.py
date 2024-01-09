@@ -25,7 +25,7 @@ from utils.utils import fill_form, form_submit, button_click, retrieve_courses, 
 
 if __name__ == '__main__':
     # Abre arquivo com dados dos departamentos
-    with open('./data/department_list.json', 'r') as json_file:
+    with open('./data/department_list.json', 'r',encoding='utf-8') as json_file:
         department_list = json.load(json_file)
 
     # Definir a URL que você quer acessar
