@@ -3,8 +3,7 @@ import json
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, WebDriverException
-from utils import *
-
+from utils.utils import *
 
 class TestRetrieve(unittest.TestCase):
     def setUp(self):
@@ -49,7 +48,6 @@ class TestRetrieve(unittest.TestCase):
         except (NoSuchElementException, WebDriverException) as e:
             self.fail(f"Test failed due to error: {e}")
             
-        
 if __name__ == '__main__':
     unittest.main()
     
