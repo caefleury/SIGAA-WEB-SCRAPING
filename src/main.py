@@ -11,11 +11,8 @@ Dependencies:
 - utils.utils (custom utility functions)
 
 Usage:
-- Ensure the 'department_list.json' file in the 'data' directory contains the necessary department details.
 - Configure the desired educational level, academic year, and term in the script.
 - Run the script to initiate the automated process of retrieving and saving course information.
-
-Note: Ensure you have the necessary web driver executable (e.g., chromedriver) available in the system PATH.
 
 Example:
     python3 main.py

@@ -1,10 +1,41 @@
+"""
+Module: utils
+
+This module provides utility functions for interacting with the SIGAA platform using Selenium.
+The functions include filling forms, submitting forms, clicking buttons, and retrieving course data.
+
+Dependencies:
+- json
+- selenium.webdriver.support.ui.Select
+- selenium.common.exceptions.NoSuchElementException
+- selenium.webdriver.common.by.By
+
+Functions:
+- fill_select(driver, tag, attribute_value, select_value): Fills a select element with the specified value.
+- fill_input(driver, tag, attribute_value, input_value): Clears and fills an input element with the specified value.
+- fill_form(driver, educational_level, department, year, term): Fills the search form with the provided values.
+- form_submit(driver, tag, attribute_value): Submits a form with the specified tag and attribute value.
+- button_click(driver, tag, attribute_value): Clicks a button with the specified tag and attribute value.
+- print_page_source(driver): Prints the page source of the current WebDriver instance.
+- retrieve_courses(driver): Retrieves course data from the SIGAA platform and returns a list of courses.
+- json_write(data, file_name): Writes data to a JSON file with the specified file name.
+- csv_write(data, file_name): Writes data to a CSV file with the specified file name.
+
+Usage:
+- Import this module and use the provided functions in your Selenium automation scripts.
+
+Example:
+    from utils.utils import fill_form, retrieve_courses
+
+    driver = webdriver.Chrome()
+    fill_form(driver, 'G', '17', '2023', '4')
+    retrieve_courses(driver)
+"""
 import json
 
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-
-# Encontra o select e o preenche com os valores
 
 
 def fill_select(driver, tag, atribute_value, select_value):

@@ -13,7 +13,7 @@ Antes de começar, certifique-se de ter instalado os seguintes requisitos:
 
 Você pode instalar as dependências executando:
 
-`pip install selenium`
+`pip install -r requirements.txt`
 
 ## Uso
 
