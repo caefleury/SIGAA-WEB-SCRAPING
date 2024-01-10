@@ -20,7 +20,7 @@ Example:
 """
 import json
 from selenium import webdriver
-from utils.utils import fill_form, form_submit, button_click, retrieve_courses, json_write, csv_write
+from utils.utils import fill_form, form_submit, button_click, retrieve_courses, json_write, csv_write # pylint: disable=line-too-long
 
 
 if __name__ == '__main__':
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     EDUCATIONAL_LEVEL = 'G'
     YEAR = '2024'
     TERM = '1'
-    
+
     decent_department_list = [
         {"name": "DEPARTAMENTO DE MATEMÁTICA", "value": "518"},
         # {"name": "DEPARTAMENTO DE CIÊNCIAS DA COMPUTAÇÃO", "value": "508"},
@@ -66,7 +66,7 @@ if __name__ == '__main__':
         json_department_courses['departmento'] = department['name']
         json_department_courses['courses'] = courses
         json_courses_data.append(json_department_courses)
-                                 
+
         for course in courses:
             csv_courses_data.append(course)
 
