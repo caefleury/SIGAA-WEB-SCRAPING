@@ -33,6 +33,7 @@ Example:
     retrieve_courses(driver)
 """
 import json
+import csv
 
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
@@ -166,7 +167,7 @@ def button_click(driver, tag, atribute_value):
     return 0
 
 
-def retrieve_courses(driver):
+def retrieve_courses(driver,department_name):
     """
     Retrieves course data from the SIGAA platform and returns a list of courses.
 
@@ -192,12 +193,13 @@ def retrieve_courses(driver):
             name = tr.find_element(By.CLASS_NAME, "tituloDisciplina").text
             course_name = name.split(' - ', 1)[1]
             course_code = name.split()[0]
-            course['course_name'] = course_name
-            course['course_code'] = course_code
+            course['departmento'] = department_name
+            course['codigo'] = course_code
+            course['nome'] = course_name
         else:
-            course['course_number'] = tr.find_element(
+            course['turma'] = tr.find_element(
                 By.CLASS_NAME, "turma").text
-            course['anoPeriodo'] = tr.find_element(
+            course['ano.periodo'] = tr.find_element(
                 By.CLASS_NAME, "anoPeriodo").text
             course['professor'] = tr.find_element(By.CLASS_NAME, "nome").text
             course['horario'] = driver.find_element(
@@ -240,10 +242,13 @@ def csv_write(data, file_name):
     Returns:
         str: The file path of the created CSV file.
     """
-    with open(f'./data/{file_name}.csv', 'w', encoding='utf-8') as csv_file:
-        csv_file.write(
-            'class_name,class_code,class_number,anoPeriodo,professor,horario,vagas_ofertadas,vagas_ocupadas,local\n') # pylint: disable=line-too-long
-        for course in data:
-            csv_file.write(
-                f"{course['class_name']},{course['class_code']},{course['class_number']},{course['anoPeriodo']},{course['professor']},{course['horario']},{course['vagas_ofertadas']},{course['vagas_ocupadas']},{course['local']}\n") # pylint: disable=line-too-long
+
+    headers = data[0].keys()
+
+    with open(f'{file_name}', 'w', encoding='utf-8') as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=headers)
+
+        writer.writeheader()
+
+        writer.writerows(data)
     return 0
