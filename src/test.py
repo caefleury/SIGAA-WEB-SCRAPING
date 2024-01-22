@@ -96,6 +96,7 @@ class TestRetrieve(unittest.TestCase):
                 'name',
                 'formTurma:j_id_jsp_1370969402_11')
 
+            # pylint: disable=no-value-for-parameter
             result = retrieve_courses(self.driver)
 
             self.assertEqual(result, test_data['expected_courses'])
