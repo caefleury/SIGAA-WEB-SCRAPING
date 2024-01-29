@@ -22,4 +22,4 @@ Execute o script main.py localizado na pasta src para iniciar o processo de web 
 `python3 src/main.py`
 
 ## Contribuição
-Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novos recursos. Abra uma issue para discutir as mudanças propostas antes de enviar um pull request.
+Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novos recursos. Abra uma discussão para propor melhorias.
