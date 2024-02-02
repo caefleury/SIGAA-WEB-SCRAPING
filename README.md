@@ -21,5 +21,15 @@ Execute o script main.py localizado na pasta src para iniciar o processo de web 
 
 `python3 src/main.py`
 
+*No momento a escolha dos departamentos é inteiramente manual e deve ser modificada na variável `decent_department_list`* :sweat_smile:.
+
+```
+decent_department_list = [
+        {"name": "DEPARTAMENTO DE MATEMÁTICA", "value": "518"},
+        # {"name": "DEPARTAMENTO DE CIÊNCIAS DA COMPUTAÇÃO", "value": "508"},
+        # {"name": "DEPARTAMENTO DE ENGENHARIA ELÉTRICA", "value": "443"},
+    ]
+```
+
 ## Contribuição
 Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novos recursos. Abra uma discussão para propor melhorias.
