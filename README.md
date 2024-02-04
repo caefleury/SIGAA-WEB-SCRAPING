@@ -32,4 +32,4 @@ decent_department_list = [
 ```
 
 ## Contribuição
-Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novos recursos. Abra uma discussão para propor melhorias.
+Este projeto serve como um teste inicial para a implementação do gerador de grade utilizando o Selenium e uma framework web como Django ou uma API como o Flask. As melhorias serão realizadas em projetos subsequentes. No entanto, sinta-se à vontade para contribuir com aprimoramentos, correções de bugs ou novos recursos. Abra uma discussão para propor melhorias.
